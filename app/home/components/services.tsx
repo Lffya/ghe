@@ -1,26 +1,27 @@
 import Image from "next/image"
+import Link from "next/link"
 
 const platforms = [
   {
     title: "Greenheap Gold",
     image: "/gold.jpg",
     borderColor: "border-purple-500",
-    rotate: "-rotate-[6deg]",
-    align: "self-start",
+    description: "Invest in gold smartly and securely with Greenheap Gold. Maximize returns with minimal effort.",
+    link: "https://greenheapgold.com",
   },
   {
     title: "Cashback Farms",
     image: "/farm.jpg",
     borderColor: "border-blue-500",
-    rotate: "rotate-0",
-    align: "self-center",
+    description: "Empowering sustainable agriculture through cashback and rewards for every farm purchase.",
+    link: "https://cashbackfarms.com",
   },
   {
     title: "Greenheap Foods",
     image: "/food.jpg",
     borderColor: "border-orange-500",
-    rotate: "rotate-[6deg]",
-    align: "self-end",
+    description: "Healthy, organic, and delicious — Greenheap Foods delivers nourishment you can trust.",
+    link: "https://greenheapfoods.com",
   },
 ]
 
@@ -37,35 +38,33 @@ export default function Services() {
           </h2>
           <div className="w-32 h-1.5 bg-gradient-to-r from-green-600 to-emerald-600 mx-auto mb-8 rounded-full"></div>
           <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-            Three innovative platforms designed to transform how you invest, live, and thrive in the modern world
+            Three innovative platforms designed to transform how you invest, live, and thrive in the modern world.
           </p>
         </div>
 
-        {/* Platform Cards */}
-        <div className="flex flex-col md:flex-row justify-center items-center gap-10 overflow-visible">
+        <div className="grid gap-10 md:grid-cols-3 justify-center">
           {platforms.map((platform, i) => (
             <div
               key={i}
-              className={`relative w-[360px] md:w-[380px] overflow-visible ${platform.align
-                } ${platform.title === "Cashback Farms" ? "-mt-6" : ""}`}
+              className={`rounded-3xl border-2 ${platform.borderColor} bg-white shadow-lg flex flex-col overflow-hidden`}
             >
-              <div
-                className={`rounded-3xl border-4 ${platform.borderColor} bg-white transform ${platform.rotate} transition-transform duration-500`}
-                style={{ padding: "12px" }}
-              >
+              <div className="w-full h-60 relative">
                 <Image
                   src={platform.image}
                   alt={platform.title}
-                  width={600}
-                  height={350}
-                  className="rounded-2xl object-cover w-full h-auto"
+                  fill
+                  className="object-cover"
                 />
               </div>
-              <h3
-                className={`mt-4 text-xl font-semibold text-center transform ${platform.rotate}`}
-              >
-                {platform.title}
-              </h3>
+              <div className="p-6 flex flex-col justify-between h-full text-center">
+                <h3 className="text-2xl font-bold text-gray-800 mb-4">{platform.title}</h3>
+                <p className="text-gray-600 mb-6">{platform.description}</p>
+                <Link href={platform.link} target="_blank" rel="noopener noreferrer">
+                  <span className="inline-block px-5 py-2 rounded-full bg-gradient-to-r from-green-600 to-emerald-600 text-white font-semibold hover:opacity-90 transition">
+                    Visit Website
+                  </span>
+                </Link>
+              </div>
             </div>
           ))}
         </div>

@@ -35,22 +35,24 @@ export default function Navbar() {
                 Home
               </Link>
               <Link
-                href="/about"
+                href="/#about"
                 className="text-gray-700 hover:text-green-600 px-3 py-2 text-sm font-medium transition-colors"
               >
-                About
+                About Us
               </Link>
+
               <Link
-                href="/services"
+                href="/#services"
                 className="text-gray-700 hover:text-green-600 px-3 py-2 text-sm font-medium transition-colors"
               >
-                Services
+                Company
               </Link>
+
               <Link
                 href="/contact"
                 className="text-gray-700 hover:text-green-600 px-3 py-2 text-sm font-medium transition-colors"
               >
-                Contact
+                Contact Us
               </Link>
             </div>
           </div>
@@ -66,24 +68,26 @@ export default function Navbar() {
         </div>
       </div>
 
-      {isOpen && (
-        <div className="md:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-b border-gray-200">
-            <Link href="/" className="text-gray-700 hover:text-green-600 block px-3 py-2 text-base font-medium">
-              Home
-            </Link>
-            <Link href="/about" className="text-gray-700 hover:text-green-600 block px-3 py-2 text-base font-medium">
-              About
-            </Link>
-            <Link href="/services" className="text-gray-700 hover:text-green-600 block px-3 py-2 text-base font-medium">
-              Services
-            </Link>
-            <Link href="/contact" className="text-gray-700 hover:text-green-600 block px-3 py-2 text-base font-medium">
-              Contact
-            </Link>
+      {
+        isOpen && (
+          <div className="md:hidden">
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-b border-gray-200">
+              <Link href="/" className="text-gray-700 hover:text-green-600 block px-3 py-2 text-base font-medium">
+                Home
+              </Link>
+              <Link href="/about" className="text-gray-700 hover:text-green-600 block px-3 py-2 text-base font-medium">
+                About
+              </Link>
+              <Link href="/services" className="text-gray-700 hover:text-green-600 block px-3 py-2 text-base font-medium">
+                Services
+              </Link>
+              <Link href="/contact" className="text-gray-700 hover:text-green-600 block px-3 py-2 text-base font-medium">
+                Contact
+              </Link>
+            </div>
           </div>
-        </div>
-      )}
-    </nav>
+        )
+      }
+    </nav >
   )
 }

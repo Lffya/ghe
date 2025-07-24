@@ -23,28 +23,49 @@ export default function Contact() {
     }))
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 2000))
+  try {
+    const response = await fetch(
+      "https://script.google.com/macros/s/AKfycbwMMcgdTORcekZaHlu8JJoajuyxyWpP9F4igoSonKD4gaqFDTGLfnfY4rScJ4ULZL4/exec",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json", // ✅ Tell server it's JSON
+        },
+        body: JSON.stringify(formData), // ✅ Send JSON
+      }
+    );
 
-    setIsSubmitting(false)
-    setIsSubmitted(true)
+    const result = await response.json();
+    console.log("Response from Google Script:", result);
 
-    // Reset form after 5 seconds
+    if (result.success) {
+      setIsSubmitted(true);
+    } else {
+      alert("Server error: " + result.error);
+    }
+  } catch (error) {
+    console.error("Form submission error:", error);
+    alert("Something went wrong. Please try again later.");
+  } finally {
+    setIsSubmitting(false);
+
     setTimeout(() => {
-      setIsSubmitted(false)
+      setIsSubmitted(false);
       setFormData({
         name: "",
         email: "",
         phone: "",
         subject: "",
         message: "",
-      })
-    }, 5000)
+      });
+    }, 5000);
   }
+};
+
 
   return (
     <section id="contact-us" className="py-24 bg-gradient-to-br from-gray-50 to-gray-100">
@@ -91,6 +112,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <h4 className="font-bold text-gray-900 mb-1">Call Us</h4>
+                    <p className="text-gray-600 mb-2">Mon-Fri 9AM-6PM EST</p>
                     <a
                       href="tel:+15551234567"
                       className="text-green-600 font-semibold hover:text-green-700 transition-colors"
@@ -263,7 +285,17 @@ export default function Contact() {
                     )}
                   </button>
 
-                  
+                  <p className="text-sm text-gray-500 text-center leading-relaxed">
+                    By submitting this form, you agree to our{" "}
+                    <a href="#" className="text-green-600 hover:text-green-700 font-medium">
+                      privacy policy
+                    </a>{" "}
+                    and{" "}
+                    <a href="#" className="text-green-600 hover:text-green-700 font-medium">
+                      terms of service
+                    </a>
+                    .
+                  </p>
                 </form>
               ) : (
                 <div className="text-center py-16">

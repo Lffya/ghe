@@ -1,10 +1,13 @@
+"use client"
+
+import Link from "next/link"
 import { Mail, Phone, MapPin, ArrowRight, Facebook, Twitter, Linkedin, Instagram, Send, Leaf, Users, Award, Globe } from "lucide-react"
 import { useState } from "react"
 
 export default function Footer() {
   const [email, setEmail] = useState("")
   const [isSubscribed, setIsSubscribed] = useState(false)
-  const [hoveredStat, setHoveredStat] = useState<number | null>(null)  // ✅ FIXED
+  const [hoveredStat, setHoveredStat] = useState<number | null>(null)
 
   const handleSubscribe = (e: { preventDefault: () => void }) => {
     e.preventDefault()
@@ -24,22 +27,15 @@ export default function Footer() {
 
   const quickLinks = [
     { name: "Home", href: "/" },
-    { name: "About Us", href: "/about" },
-    { name: "Company", href: "/company" },
-    { name: "Contact Us", href: "/contact" }
+    { name: "About Us", href: "/#about" },
+    { name: "Company", href: "/#services" },
+    { name: "Contact Us", href: "/#contact-us" }
   ]
 
   const platforms = [
-    { name: "Cashback Farms", href: "/cashback-farms" },
-    { name: "Greenheap Gold", href: "/greenheap-gold" },
-    { name: "Greenheap Foods", href: "/greenheap-foods" }
-  ]
-
-  const stats = [
-    { icon: Users, value: "50K+", label: "Happy Customers", color: "from-blue-400 to-blue-600" },
-    { icon: Award, value: "15+", label: "Awards Won", color: "from-yellow-400 to-yellow-600" },
-    { icon: Globe, value: "25+", label: "Countries", color: "from-purple-400 to-purple-600" },
-    { icon: Leaf, value: "100%", label: "Eco Friendly", color: "from-green-400 to-green-600" }
+    { name: "Cashback Farms", href: "https://www.cashbackfarms.com/" },
+    { name: "Greenheap Gold", href: "https://www.greenheapgold.com/" },
+    { name: "Greenheap Foods", href: "https://www.greenheapfoods.com/" }
   ]
 
   return (
@@ -52,7 +48,6 @@ export default function Footer() {
 
       <div className="relative z-10 py-20">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-          
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
             <div className="lg:col-span-2 space-y-6">
@@ -71,7 +66,7 @@ export default function Footer() {
               </p>
               <div className="flex space-x-4">
                 {socialLinks.map((social) => (
-                  <a
+                  <Link
                     key={social.label}
                     href={social.href}
                     className="group relative w-12 h-12 bg-gradient-to-br from-green-600 to-emerald-700 hover:from-green-500 hover:to-emerald-600 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg"
@@ -79,7 +74,7 @@ export default function Footer() {
                   >
                     <social.icon className="w-5 h-5 text-white transition-transform duration-300 group-hover:scale-110" />
                     <div className="absolute inset-0 rounded-xl bg-white/0 group-hover:bg-white/10 transition-all duration-300"></div>
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -92,14 +87,14 @@ export default function Footer() {
               <ul className="space-y-4">
                 {quickLinks.map((link) => (
                   <li key={link.name}>
-                    <a 
-                      href={link.href} 
+                    <Link 
+                      href={link.href}
                       className="text-gray-300 hover:text-green-400 transition-all duration-300 flex items-center group hover:translate-x-2"
                     >
                       <div className="w-2 h-2 bg-green-500 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
                       {link.name}
                       <ArrowRight className="w-4 h-4 ml-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" />
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -113,14 +108,14 @@ export default function Footer() {
               <ul className="space-y-4">
                 {platforms.map((platform) => (
                   <li key={platform.name}>
-                    <a 
-                      href={platform.href} 
+                    <Link 
+                      href={platform.href}
                       className="text-gray-300 hover:text-emerald-400 transition-all duration-300 flex items-center group hover:translate-x-2"
                     >
                       <div className="w-2 h-2 bg-emerald-500 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
                       {platform.name}
                       <ArrowRight className="w-4 h-4 ml-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" />
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -217,7 +212,7 @@ export default function Footer() {
               </p>
               <p className="text-green-400 font-semibold text-center md:text-right flex items-center">
                 <Leaf className="w-4 h-4 mr-2 animate-pulse" />
-                Buit by THE BOT
+                Built by THE BOT
               </p>
             </div>
           </div>

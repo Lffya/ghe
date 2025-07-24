@@ -6,6 +6,7 @@ import About from "./components/about"
 import Services from "./components/services"
 import Vision from "./components/vision"
 import Footer from "../components/footer"
+import Contact from "../contact-us/page"
 
 export default function HomePage() {
 
@@ -15,6 +16,7 @@ export default function HomePage() {
       <About />
       <Services />
       <Vision />
+      <Contact />
       <Footer />
     </main>
   )
